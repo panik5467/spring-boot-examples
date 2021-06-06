@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+		"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	  xmlns:p="http://primefaces.org/ui"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+<h:head>
+</h:head>
+
+<h:body style="margin-left:50px">
+
+<h:form>
+
+<p:panelGrid>
+            <div class="p-field p-col-12 p-md-4">
+                <p:outputLabel for="input2" value="nombre Double "/>
+                <p:inputNumber id="input2" value="#{lineChartBean.test1}" 
+                                decimalSeparator="," thousandSeparator="." decimalPlaces="3" emptyValue="empty" >
+								
+					<p:ajax event="change" listener="#{lineChartBean.clicChange()}"  />					
+				</p:inputNumber>
+            </div>
+			<p:commandButton value="clic">
+				<p:ajax event="click" listener="#{lineChartBean.clicChange()}" update="@form"/>
+			</p:commandButton>			
+
+
+		<p>Prix <h:outputText value="#{lineChartBean.prix}" converter="javax.faces.Number" >
+		<f:convertNumber pattern="#.##"/>
+		</h:outputText>
+		</p>
+			   
+		<p>PI <h:outputText value="#{62832/20000}" converter="javax.faces.Number" >
+		<f:convertNumber type="percent" maxFractionDigits = "5" />
+		</h:outputText>
+		</p>
+		
+		<p>Date <h:outputText value="#{lineChartBean.date1}">
+		<f:convertDateTime pattern="dd/MM/yyyy HH:mm" timeZone="Europe/Paris"/>
+		</h:outputText>
+		</p>
+		
+</p:panelGrid>
+
+	<h2>PrimeFaces Linear Chart Example</h2>
+	<p:chart type="line" model="#{lineChartBean.lineModel}" style="background:beige;height:400px;width:600px"/>
+	
+	
+</h:form>
+
+</h:body>
+</html>
